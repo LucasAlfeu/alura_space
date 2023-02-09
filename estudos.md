@@ -95,3 +95,23 @@ class ListandoFotografias(admin.ModelAdmin):
     search_fields = ('nome',) # Com esse método conseguimos fazer a busca pelo item passado como parâmetro. É importante ter a vírgula pois deve enviar uma tupla e não apenas parâmetros
 ```
 lembrar de sempre que fizer alguma classe passar do resgister - ` admin.site.register(Fotografia, ListandoFotografias) `
+
+## Criando categorias no banco de dados 
+
+1° criar uma tupla com oas opções dentro dda classe no models que faz o link com o banco de dados
+```
+    OPCOES_CATEGORIA = [
+        ("NEBULOSA", "Nebulosa"),
+        ("ESTRELA", "Estrela"),
+        ("GALÁXIA", "Galáxia"),
+        ("PLANETA", "Planeta")
+    ]
+```
+
+2° adicionar na classe que faz o link com op banco de dados um novo CharFild com o atributo de ` chioces `, passando a lista de tupla
+
+```
+categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='')
+```
+
+3° Rodar os comandos ` python manage.py makemigrations ` e depois o ` python manage.py migrate `
