@@ -79,3 +79,19 @@ def imagem(request, foto_id):
 1° Rodar o código ` python manage.py createsuperuser ` para criar um login de administrador
 
 2° Acessar o pagina de admin do djanco com ` /admin `
+
+## Crud no Django Admin
+
+1° importar a classe que faz o link com o banco de dados dento de models no admin.py dentro da pasta do app - ` from galeria.models import Fotografia `
+
+2° registrar o banco de dados com o comando e passar a classe importada - ` admin.site.register(Fotografia) `
+
+3° para facilitar a navegação dentro de admin podemos criar uma classe com os seguintes metodos:
+
+```
+class ListandoFotografias(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'legenda') # os itens que aparecem na pagina do Admistrador
+    list_display_links = ('id', 'nome') # Onde podemos clicar para editar os campos dos dados
+    search_fields = ('nome',) # Com esse método conseguimos fazer a busca pelo item passado como parâmetro. É importante ter a vírgula pois deve enviar uma tupla e não apenas parâmetros
+```
+lembrar de sempre que fizer alguma classe passar do resgister - ` admin.site.register(Fotografia, ListandoFotografias) `

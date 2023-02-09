@@ -1,3 +1,13 @@
 from django.contrib import admin
+from galeria.models import Fotografia
 
-# Register your models here.
+# Nesse arquivo fazemos todas as configurações da pagina de admin do Django
+
+class ListandoFotografias(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'legenda') # os itens que aparecem na pagina do Admistrador
+    list_display_links = ('id', 'nome') # Onde podemos clicar para editar os campos dos dados
+    search_fields = ('nome',) # Com esse método conseguimos fazer a busca pelo item passado como parâmetro
+
+# Toda vez que criarmos uma classe dentro desse arquivo precisamos listar dentro desse register
+
+admin.site.register(Fotografia, ListandoFotografias)
