@@ -73,3 +73,9 @@ def imagem(request, foto_id):
     fotografia = get_object_or_404(Fotografia, pk=foto_id)
     return render(request, 'galeria/imagem.html', {"fotografia": fotografia})
 ```
+
+## Acessar o Django admin
+
+1° Rodar o código ` python manage.py createsuperuser ` para criar um login de administrador
+
+2° Acessar o pagina de admin do djanco com ` /admin `
