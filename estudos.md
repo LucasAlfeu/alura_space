@@ -57,3 +57,19 @@ pip install -r requirements.txt
         EX: {% for fotografia in cards %}
 
         Obs: lembrar de colocar um endfor no final do bloco
+
+
+## Passando uma referência ou uma variável
+
+1° Passar uma variável através do link - ` <a href="{% url 'imagem' fotografia.id %}"> `
+
+2° Arrumar o path no arquivo de urls.py dentro da pasta do app para indicar que vai ser enviado uma variável - ` path('imagem/<int:foto_id>', imagem, name='imagem') `
+
+3°  No arquivo de views na pasta do app importar o metodo get_object_or_404 e indicar que essa variavels vai ser recebida. Na funcção importada vão ser passados dois parametros, a classe dos models e no pk passamos a variável que vais er recebida
+```
+from django.shortcuts import render, get_object_or_404
+
+def imagem(request, foto_id):
+    fotografia = get_object_or_404(Fotografia, pk=foto_id)
+    return render(request, 'galeria/imagem.html', {"fotografia": fotografia})
+```
