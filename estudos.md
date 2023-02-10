@@ -115,3 +115,17 @@ categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='
 ```
 
 3° Rodar os comandos ` python manage.py makemigrations ` e depois o ` python manage.py migrate `
+
+## Escolhendo quais itens é mostrado na página principal pelo Admin
+
+1°  No arquivo de models na pasta do app criar uma variável com a função BooleanFild com o default sendo falso
+        EX: ` publicada = models.BooleanField(default=False) `
+
+2° No arquivo de views trocar o ` objects.all() ` por ` objects.filter() ` passando a variavel criado anteriormente
+        EX: ```   
+            # fotografias = Fotografia.objects.all()
+            fotografias = Fotografia.objects.filter(publicada=True) 
+            ```
+
+3° No arquivo admin dentro da classe que criamos para fazer a ponte com o banco de dados, criamos o método de ` list_editable ` e passamos a variável criada no primeiro ponto em str
+        EX: ` list_editable = ("publicada",) ` - Não esquecer da virgula pois passamos uma tupla

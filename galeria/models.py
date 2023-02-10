@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # criamos classe de OO e o python vai traduzir as classes para o banco de dados
 # nas classes criamos as colunas que queremos no banco de dados
@@ -16,6 +17,8 @@ class Fotografia(models.Model):
     categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='')
     descricao = models.TextField(null=False, blank=False)
     foto = models.CharField(max_length=100, null=False, blank=False)
+    publicada = models.BooleanField(default=False)
+    dataFotografia = models.DateField(default=datetime.now, blank=False)
 
     def __str__(self) -> str:
         return f'Fotografia [nome={self.nome}]'
