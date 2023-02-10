@@ -157,3 +157,5 @@ categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='
 
 3° Adicionar a função ` ImageField ` dentro do arquivo models.py do app com o parametro ` upload_to= nome_da_pasta `    
     EX: ``` foto = models.ImageField(upload_to="fotos/%Y/%m/%d/", blank=True) ``` 
+
+4° modificar o html onde as imagens estão sendo renderizadas. Na tag de imagem no SCR colocamos o seguinte trecho de código: ` src="{{ fotografia.foto.url }}" `
