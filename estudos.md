@@ -129,3 +129,31 @@ categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='
 
 3° No arquivo admin dentro da classe que criamos para fazer a ponte com o banco de dados, criamos o método de ` list_editable ` e passamos a variável criada no primeiro ponto em str
         EX: ` list_editable = ("publicada",) ` - Não esquecer da virgula pois passamos uma tupla
+
+## Importando um arquivo de imagem
+
+1° no arquivo setting.py da pasta setup criar os comando para criar um diretório para armazenar as imagens e de onde o Django pode encontrar as imagens
+    EX:```
+        # Media
+
+        MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+        MEDIA_URL = "/media/"
+    ```
+    É uma convenção escrever dessa forma
+
+2° Adicionar os caminho ` + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) ` no arquivo de urls dentro de setup da seguinte maneira
+    ```
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('galeria.urls')),
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ```
+    OBS: lembrar de importar o settings e o static 
+    ```
+    from django.conf import settings
+    from django.conf.urls.static import static
+    ```
+
+3° Adicionar a função ` ImageField ` dentro do arquivo models.py do app com o parametro ` upload_to= nome_da_pasta `    
+    EX: ``` foto = models.ImageField(upload_to="fotos/%Y/%m/%d/", blank=True) ``` 
