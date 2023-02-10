@@ -21,7 +21,7 @@ class Fotografia(models.Model):
     dataFotografia = models.DateField(default=datetime.now, blank=False)
 
     def __str__(self) -> str:
-        return f'Fotografia [nome={self.nome}]'
+        return self.nome
 
 # o comando " python manage.py makemigrations " para mostrar para o Django que há uma nova tabela do banco de dados que desejamos traduzir para, definitivamente, uma tabela no banco de dados.
 # depois é só rodar o comando "python manage.py migrate" para rodar a migração e agora temos o banco de dados SQL lite
