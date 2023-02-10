@@ -7,6 +7,8 @@ class ListandoFotografias(admin.ModelAdmin):
     list_display = ('id', 'nome', 'legenda') # os itens que aparecem na pagina do Admistrador
     list_display_links = ('id', 'nome') # Onde podemos clicar para editar os campos dos dados
     search_fields = ('nome',) # Com esse método conseguimos fazer a busca pelo item passado como parâmetro
+    list_filter = ("categoria",) # Com esse método criamos uma lista de filtros
+    list_per_page = 10 # Definimos quantos itens teremos em cada página na area de admin
 
 # Toda vez que criarmos uma classe dentro desse arquivo precisamos listar dentro desse register
 
